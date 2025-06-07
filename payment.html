@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Page</title>
+  <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+  <h2>Your Order</h2>
+  <div id="order-summary"></div>
+
+  <div id="total"></div>
+
+  <div style="text-align: center; margin-top: 30px;">
+    <button id="payBtn" class="pay-button">Pay Now</button>
+  </div>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const summaryDiv = document.getElementById("order-summary");
+    const totalDiv = document.getElementById("total");
+
+    let total = 0;
+
+    // Map original names to new names and images
+    const nameMap = {
+      "Product 1": "Chain",
+      "Product 2": "Bracelet",
+      "Product 3": "Ear Rings"
+    };
+
+    const imageMap = {
+      "Chain": "images/chain.jpg",
+      "Bracelet": "images/bracelet.jpg",
+      "Ear Rings": "images/earrings.jpeg"
+    };
+
+    cart.forEach(item => {
+      // Rename product
+      item.name = nameMap[item.name] || item.name;
+
+      const itemImage = imageMap[item.name] || "images/default.png";
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+
+      const div = document.createElement("div");
+      div.className = "product";
+      div.innerHTML = `
+        <img src="${itemImage}" alt="${item.name}" />
+        <div>
+          <h3>${item.name}</h3>
+          <p>Quantity: ${item.quantity}</p>
+          <p>Price: Rs.${item.price}</p>
+          <p>Subtotal: Rs.${itemTotal}</p>
+        </div>
+      `;
+      summaryDiv.appendChild(div);
+    });
+      
+
+    totalDiv.innerHTML = `Total: Rs.${total}`;
+
+    // Pay button
+    document.getElementById("payBtn").addEventListener("click", function () {
+      alert("Proceed to pay!");
+      localStorage.removeItem("cart");
+      window.location.href = "methods.html";
+    });
+  </script>
+</body>
+</html>

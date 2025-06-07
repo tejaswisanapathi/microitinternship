@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!meta charset="UTF-8">
+    <!meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="estyle.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Our Products</h2>
+        <div class="product-list">
+            <div class="product">
+                <img src="images/chain.jpg" alt="Chain">
+                <h3>Chain</h3>
+                <p>Rs.850.00</p>
+                <button onclick="addToCart(1)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="images/bracelet.jpg" alt="Bracelete">
+                <h3>Bracelete</h3>
+                <p>Rs.1,500.00</p>
+                <button onclick="addToCart(2)">Add to Cart</button>
+
+            </div>
+            <div class="product">
+                <img src="images/earrings.jpeg" alt="Ear Rings">
+                <h3>Ear Rings</h3>
+                <p>Rs.700.00</p>
+                <button onclick="addToCart(3)">Add to Cart</button>
+            </div>
+        </div>
+        <h2>Shopping Cart</h2>
+        <div id="cart" class="cart"></div>
+        <p id="total"></p>
+        <button onclick="goToCheckout()">Checkout</button>
+    </div>
+    <script src="product.js"></script>
+</body>
+</html>
